@@ -1,4 +1,4 @@
-from src.node import Node
+from src.node import Node, Status
 import os
 
 
@@ -26,14 +26,12 @@ for index, peers in enumerate(lista_peers):
 
 
 for index, node in enumerate(nodes):
-    node.set_finger_table(nodes[index+1:], 5)
+    node.set_finger_table(nodes[index+1:], 5, 2)
+    print(node.finger_table.finger_table)
     if index == len(nodes)-1:
         node.set_next_node(0)
     else:
         node.set_next_node(index+1)
 
-print('Encontrar parte1 filme 3 na rede partindo do peer1')
-
-
-print(nodes[0].find_node_jump(2, nodes, 1,'max_jumps'))
+print(nodes[0].find_node_jump(0, nodes, 1,Status.FULL_JUMP))
 
